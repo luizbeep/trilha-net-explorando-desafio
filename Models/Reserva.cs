@@ -23,12 +23,12 @@ namespace DesafioProjetoHospedagem.Models
                 }
                 else
                 {
-                    throw new InvalidOperationException("A capacidade da suíte é menor que o número de hóspedes.");
+                    throw new Exception("A capacidade da suíte é menor que o número de hóspedes.");
                 }
             }
-            catch (InvalidOperationException ex)
+            catch (Exception erro)
             {
-                Console.WriteLine($"Erro: {ex.Message}");
+                Console.WriteLine($"Erro: {erro.Message}");
             }
         }
 
@@ -39,14 +39,13 @@ namespace DesafioProjetoHospedagem.Models
 
         public int ObterQuantidadeHospedes()
         {
-            return Hospedes.Count;  // Corrigido para retornar o número correto
+            return Hospedes.Count; 
         }
 
         public decimal CalcularValorDiaria()
         {
             decimal valor = DiasReservados * Suite.ValorDiaria;
 
-            // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
             if (DiasReservados >= 10)
             {
                 valor -= valor * 0.10m; 
